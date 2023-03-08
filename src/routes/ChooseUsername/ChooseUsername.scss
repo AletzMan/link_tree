@@ -1,0 +1,19 @@
+$color_background: #001B2E;
+$color_primary: #294C60;
+$color_secondary: #ADB6C4;
+$color_hover: #FFC49B;
+$color_font: #FFEFD3;
+
+.choose {
+    background-color: $color_primary;
+    padding: 1rem;
+
+    &__form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        gap: 1rem;
+        width: 70%;
+    }
+}

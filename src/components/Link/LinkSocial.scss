@@ -1,0 +1,82 @@
+$color_background: #001B2E;
+$color_primary: #294C60;
+$color_secondary: #ADB6C4;
+$color_hover: #FFC49B;
+$color_font: #FFEFD3;
+
+.link {
+    position: relative;
+    background-color: $color_secondary;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.2rem;
+    border-radius: 0.3rem 0 0 0;
+
+    &__delete{
+        position: absolute;
+        width: 1.5rem;
+        right: -0.7rem;
+        top: -0.7rem;
+        background-color: #294C60aa;
+        border: 1px solid $color_secondary;
+        border-radius: 0.2rem;
+        transition: all 0.2s linear;
+        cursor: pointer;
+        padding: 0;
+        &:hover {
+            background-color: #d12727aa;
+        }
+    }
+}
+
+.infolink {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    justify-content: left;
+    gap: 0.3rem;
+    align-items: center;
+    background-color: $color_primary; 
+    border-radius: 0.3rem 0 0 0;
+    text-align: left;   
+    padding: 0.2rem;
+    &__title {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+    &__url {
+        font-size: 1rem;
+        padding-left: 1rem;
+    }
+    &__button{
+        width: 2rem;
+        background-color: rgb(156, 156, 156);
+        border: none;
+        cursor: pointer;
+        transition: filter 0.3s linear;
+
+        &:hover {
+            filter: invert(1);
+        }
+        
+        &--title {
+
+        }
+        &--url {
+        }
+    }
+
+    &__input{
+        width: 92%;
+        margin-left: 1rem;
+        padding: 0.2rem;
+    }
+}
+
+.editicon {
+    width: 1.5rem;
+    pointer-events: none;
+}
+.deleteicon {
+    width: 1.2rem;
+}

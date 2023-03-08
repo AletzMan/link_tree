@@ -7,7 +7,7 @@ import { AuthProvider } from '../../components/authProvider';
 
 function HomePage() {
     const navigate = useNavigate();
-    const [currentUser, setCurrentUser] = useState(null);
+    //const [currentUser, setCurrentUser] = useState(null);
     const [stateLogin, setLoginState] = useState(0);
     /*
     0: Inicializando
@@ -15,28 +15,29 @@ function HomePage() {
     2: login completo
     3: login sin registro
     4: no login
+    5: username exists
     */
-
-    useEffect(() => {
-        setLoginState(1);
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const isRegistered = await userExists(user.uid);
-                if (isRegistered) {
-                    setLoginState(2);
-                    navigate('/dashboard');
+    /*
+        useEffect(() => {
+            setLoginState(1);
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const isRegistered = await userExists(user.uid);
+                    if (isRegistered) {
+                        setLoginState(2);
+                        navigate('/dashboard');
+                    } else {
+                        navigate('/choose-username');
+                        setLoginState(3);
+                    }
+                    console.log(user.displayName)
                 } else {
-                    navigate('/choose-username');
-                    setLoginState(3);
+                    setLoginState(4);
+                    console.log('Not authentification')
                 }
-                console.log(user.displayName)
-            } else {
-                setLoginState(4);
-                console.log('Not authentification')
-            }
-        });
-    }, [])
-
+            });
+        }, [])
+    */
 
 
     const handleOnClick = () => {
@@ -51,27 +52,40 @@ function HomePage() {
         }
     }
 
-return <AuthProvider></AuthProvider>
+    const handleUserLoggedIn = (user) => {
+        navigate('/dashboard');
+    }
+    const handleNotLoggedIn = (user) => {
+        setLoginState(4);
+    }
+    const handleNotRegistered = () => {
+        navigate('/choose-username');
+    }
 
-    /*
-    if (stateLogin === 1) {
+
+
+    /*if (stateLogin === 1) {
         return <div>Loading...</div>
-    }
-    if (stateLogin === 2) {
-        return <div>Estas autenticado y registrado</div>
-    }
-    if (stateLogin === 3) {
-        return <div>Estas autenticado pero no registrado</div>
-    }
-    if (stateLogin === 4) {
+    }*/
+    
+    if (stateLogin === 4 || stateLogin === 5) {
         return (
             <>
                 <h1>LOGIN</h1>
-                <button onClick={handleOnClick}></button>
+                <button onClick={handleOnClick}>Login with Google</button>
             </>
         )
     }
-    */
+    return (
+        <AuthProvider
+            userLoggedIn={handleUserLoggedIn}
+            userNotLoggedIn={handleNotLoggedIn}
+            userNotRegistered={handleNotRegistered}
+        >
+            <div>Loading...</div>
+        </AuthProvider>
+        
+    );
 }
 
 export { HomePage };

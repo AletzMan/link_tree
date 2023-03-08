@@ -1,0 +1,68 @@
+.link {
+  position: relative;
+  background-color: #ADB6C4;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem 0 0 0;
+}
+.link__delete {
+  position: absolute;
+  width: 1.5rem;
+  right: -0.7rem;
+  top: -0.7rem;
+  background-color: #294C60aa;
+  border: 1px solid #ADB6C4;
+  border-radius: 0.2rem;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  padding: 0;
+}
+.link__delete:hover {
+  background-color: #d12727aa;
+}
+
+.infolink {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  justify-content: left;
+  gap: 0.3rem;
+  align-items: center;
+  background-color: #294C60;
+  border-radius: 0.3rem 0 0 0;
+  text-align: left;
+  padding: 0.2rem;
+}
+.infolink__title {
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+.infolink__url {
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+.infolink__button {
+  width: 2rem;
+  background-color: #9c9c9c;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.3s linear;
+}
+.infolink__button:hover {
+  filter: invert(1);
+}
+.infolink__input {
+  width: 92%;
+  margin-left: 1rem;
+  padding: 0.2rem;
+}
+
+.editicon {
+  width: 1.5rem;
+  pointer-events: none;
+}
+
+.deleteicon {
+  width: 1.2rem;
+}

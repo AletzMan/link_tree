@@ -1,30 +1,41 @@
 import { async } from '@firebase/util';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { useEffect, useState } from 'react';
-import { auth, userExists } from '../../firebase/firebase';
-import { useNavigate } from 'react-router-dom';
-import { AuthProvider } from '../../components/authProvider';
+import { auth, getUserInfo, registerNewUser, userExists } from '../firebase/firebase';
 
 function AuthProvider({ children, userLoggedIn, userNotLoggedIn, userNotRegistered }) {
-    const navigate = useNavigate();
+  
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const isRegistered = await userExists(user.uid);
                 if (isRegistered) {
-                   userLoggedIn(user);
+                    const userInfo = await getUserInfo(user.uid);
+                    if (userInfo.processCompleted) {
+                        userLoggedIn(userInfo);                        
+                    } else {
+                        userNotRegistered(userInfo);
+                    }
                 } else {
+                    await registerNewUser({
+                        uid: user.uid,
+                        displayName: user.displayName,
+                        profilePicture: '',
+                        username: '',
+                        processCompleted: false
+
+                    })
                     userNotRegistered(user);
                 }
                 console.log(user.displayName)
             } else {
-                setLoginState(4);
+                userNotLoggedIn;
                 console.log('Not authentification')
             }
         });
-    }, [])
+    }, [userLoggedIn, userNotLoggedIn, userNotRegistered])
     return (
-        <div>Auth</div>
+        <div>{children}</div>
     )
 }
 
