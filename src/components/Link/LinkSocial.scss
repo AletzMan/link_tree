@@ -12,7 +12,7 @@ $color_font: #FFEFD3;
     padding: 0.2rem;
     border-radius: 0.3rem 0 0 0;
 
-    &__delete{
+    &__delete {
         position: absolute;
         width: 1.5rem;
         right: -0.7rem;
@@ -23,6 +23,7 @@ $color_font: #FFEFD3;
         transition: all 0.2s linear;
         cursor: pointer;
         padding: 0;
+
         &:hover {
             background-color: #d12727aa;
         }
@@ -36,19 +37,22 @@ $color_font: #FFEFD3;
     justify-content: left;
     gap: 0.3rem;
     align-items: center;
-    background-color: $color_primary; 
+    background-color: $color_primary;
     border-radius: 0.3rem 0 0 0;
-    text-align: left;   
+    text-align: left;
     padding: 0.2rem;
+
     &__title {
         font-size: 1rem;
         padding-left: 1rem;
     }
+
     &__url {
         font-size: 1rem;
         padding-left: 1rem;
     }
-    &__button{
+
+    &__button {
         width: 2rem;
         background-color: rgb(156, 156, 156);
         border: none;
@@ -58,25 +62,72 @@ $color_font: #FFEFD3;
         &:hover {
             filter: invert(1);
         }
-        
-        &--title {
 
-        }
-        &--url {
-        }
+        &--title {}
+
+        &--url {}
     }
 
-    &__input{
+    &__input {
         width: 92%;
         margin-left: 1rem;
         padding: 0.2rem;
     }
+
+
 }
 
 .editicon {
     width: 1.5rem;
     pointer-events: none;
 }
+
 .deleteicon {
     width: 1.2rem;
+}
+
+.profilelink {
+    position: relative;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.3rem;
+    border-radius: 0.3rem 0.3rem 0 0;
+    transition: transform 0.2s linear;
+    cursor: pointer;
+    background-color: $color_background;
+    border: 1px solid $color_secondary;
+
+    &:hover {
+        filter: brightness(180%);
+        &>.profilelink__link>.profilelink__a {
+            filter: invert(1);
+        }
+    }
+
+    &__a {
+        text-decoration: none;
+        color: white;
+        text-align: center;
+    }
+
+
+    &__link {
+        padding: 0.4rem;
+        border-radius: 0.2rem 0.2rem 0 0;
+
+        &--Youtube {
+            background-color: #ff0000;
+            color: #001B2E;
+        }
+
+        &--Facebook {
+            background-color: #3b5998;
+            color: #001B2E;
+        }
+
+        &--Instagram {
+            background-color: #bc2a8d;
+            color: #001B2E;
+        }
+    }
 }

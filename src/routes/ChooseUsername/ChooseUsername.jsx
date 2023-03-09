@@ -9,6 +9,8 @@ function ChooseUsernamePage() {
     const [stateLogin, setLoginState] = useState(0);
     const [currentUser, setCurrentUser] = useState(null);
     const [username, setUsername] = useState('');
+    const [error, setError] = useState('');
+
     const handleUserLoggedIn = (user) => {
         navigate('/dashboard');
     }
@@ -20,13 +22,15 @@ function ChooseUsernamePage() {
         setCurrentUser(user);
     }
     const handleInputUsername = (e) => {
+        setError('');
         setUsername(e.target.value);
     }
     const handleContinue = async () => {
-        if (username !== '') {
+        if (username.length > 5) {
             const exists = await existsUsername(username);
             if (exists) {
                 setLoginState(5);
+                setError('The user name already exists, please choose another one.');
             } else {
                 const tmp = { ...currentUser };
                 tmp.username = username;
@@ -35,17 +39,23 @@ function ChooseUsernamePage() {
                 navigate('/dashboard');
                 //stateLogin(6);
             }
+        } else if (username === ''){
+            setLoginState(5);
+            setError('The field cannot remain empty');
+        } else if (username.length < 6){
+            setLoginState(5);
+            setError('The minimum number of characters is 6');
         }
     }
     if (stateLogin === 3 || stateLogin === 5) {
         return (
             <section className='choose'>
-                <h1>{`Bienvenido ${currentUser.displayName}`}</h1>
-                <p> Para terminar el proceso elige un nombre de usuario</p>
-                {stateLogin === 5 && <p>El nombre de usuario ya existe, favor de elegir otro.</p>}
-                <div className='choose__form'>
-                    <input type='text' onInput={handleInputUsername} />
-                    <button onClick={handleContinue}>Continue</button>
+                <h1 className='choose__title'>{`Welcome  `}<span className='choose__name'>{currentUser.displayName}</span></h1>
+                <p className='choose__p'>To finish the process choose a user name</p>
+                <div className='choose__container'>{stateLogin === 5 && <p className='choose__error'>{error}</p>}</div>
+                <div className='choose__form chooseform'>
+                    <input className='chooseform__input' type='text' onInput={handleInputUsername} placeholder='username'/>
+                    <button className='chooseform__button button' onClick={handleContinue}>Continue</button>
                 </div>
             </section>
         )

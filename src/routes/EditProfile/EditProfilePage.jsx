@@ -1,18 +1,24 @@
+import { async } from "@firebase/util";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../components/authProvider";
 import { DashboardWrapper } from "../../components/dashboardWrapper";
+import { getProfilePhotoUrl, setUserProfilePhoto, updateUser } from "../../firebase/firebase";
 
 function EditProfilePage() {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState(null);
     const [stateLogin, setLoginState] = useState(0);
+    const [profilePhotoUrl, setProfilePhotoUrl] = useState('');
     const fileRef = useRef(null);
 
     const handleUserLoggedIn = async (user) => {
         setCurrentUser(user);
+        const url = await getProfilePhotoUrl(user.profilePicture);
+        setProfilePhotoUrl(url);
         setLoginState(2);
     }
+
     const handleNotLoggedIn = (user) => {
         navigate('/login');
     }
@@ -20,19 +26,45 @@ function EditProfilePage() {
         navigate('/login');
     }
     const handleOpenFilePicker = () => {
-        if(fileRef.current){
+        if (fileRef.current) {
             fileRef.current.click();
         }
     }
+    const handleChangedFile = (e) => {
+        const files = e.target.files;
+        const fileReader = new FileReader();
+        if (fileReader && files && files.length > 0) {
+            fileReader.readAsArrayBuffer(files[0]);
+            fileReader.onload = async function () {
+                const imageData = fileReader.result;
+                const res = await setUserProfilePhoto(currentUser.uid, imageData);
+
+                if (res) {
+                    const tmpUser = { ...currentUser };
+                    tmpUser.profilePicture = res.metadata.fullPath;
+                    await updateUser(tmpUser);
+                    setCurrentUser({ ...tmpUser });
+                    const url = await getProfilePhotoUrl(currentUser.profilePicture);
+                    setProfilePhotoUrl(url);
+
+                }
+            }
+        }
+    }
+    if (stateLogin !== 2) {
+        return (
+            <AuthProvider userLoggedIn={handleUserLoggedIn} userNotLoggedIn={handleNotLoggedIn} userNotRegistered={handleNotRegistered}>
+            </AuthProvider>
+        );
+    }
+
     return (
-        <AuthProvider userLoggedIn={handleUserLoggedIn} userNotLoggedIn={handleNotLoggedIn} userNotRegistered={handleNotRegistered}>
-            <DashboardWrapper avtiveLinks={[false, true, false]}>
-                <h1>EDIT PROFILE</h1>
-                <img src={''} alt="image profile" width={100}/>
-                <button onClick={handleOpenFilePicker}>Choose profile picture</button>
-                <input ref={fileRef} type='file' style={{display: 'none'}}/>
-            </DashboardWrapper>
-        </AuthProvider>
+        <DashboardWrapper avtiveLinks={[false, true, false]}>
+            <h1>EDIT PROFILE</h1>
+            <img src={profilePhotoUrl} alt="image profile" width={100} />
+            <button onClick={handleOpenFilePicker}>Choose profile picture</button>
+            <input ref={fileRef} type='file' style={{ display: 'none' }} onChange={handleChangedFile} />
+        </DashboardWrapper>
     );
 }
 

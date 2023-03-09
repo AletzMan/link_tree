@@ -1,0 +1,45 @@
+$color_background: #001B2E;
+$color_primary: #294C60;
+$color_secondary: #ADB6C4;
+$color_hover: #FFC49B;
+$color_font: #FFEFD3;
+
+.home {
+    background-color: #294C60;
+    border: 1px solid $color_font;
+    min-width: 320px;
+    padding: 0.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+
+    &__icon {
+        width: 2.5rem;
+        align-self: center;
+    }
+
+    &__title {
+        margin: 0 1rem;
+        font-size: 2.5rem;
+        color: #e69809;
+    }
+
+    &__p {
+        text-align: left;
+    }
+
+    &__span {
+        text-align: left;
+    }
+
+    &__li {
+        text-align: left;
+        list-style:circle ;
+    }
+
+    &__get {
+        text-align: center;
+        font-weight: 600;
+        color: $color_hover;
+        margin-bottom: 0.2rem;
+    }
+}

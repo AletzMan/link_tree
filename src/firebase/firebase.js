@@ -34,10 +34,10 @@ export async function userExists(userID) {
 }
 
 export async function existsUsername(username) {
+  const users = [];
   try {
-    const users = [];
     const docsRef = collection(db, 'users');
-    const q = query(docsRef, where('users', '==', username));
+    const q = query(docsRef, where('username', '==', username));
     const querySnapShot = await getDocs(q);
 
     querySnapShot.forEach(doc => {
@@ -126,4 +126,37 @@ export async function deleteeLink(docId) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export async function setUserProfilePhoto(uid, file) {
+  try {
+    const imageRef = ref(storage, `images/${uid}`);
+    const resUpload = await uploadBytes(imageRef, file);
+    return resUpload;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getProfilePhotoUrl(profilePicture) {
+  try {
+    const imageRef = ref(storage, profilePicture) ;
+    const url = await getDownloadURL(imageRef);
+    return url;
+  } catch (error) {
+    
+  }
+}
+
+export async function getUserPublicProfileInfo(uid) {
+  const profileInfo = await getUserInfo(uid);
+  const linksInfo = await getLinks(uid);
+  return {
+    profileInfo: profileInfo,
+    linksInfo: linksInfo
+  }
+}
+
+export async function logout() {
+  await auth.signOut();
 }

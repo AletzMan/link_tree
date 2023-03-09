@@ -29,7 +29,7 @@ function AuthProvider({ children, userLoggedIn, userNotLoggedIn, userNotRegister
                 }
                 console.log(user.displayName)
             } else {
-                userNotLoggedIn;
+                userNotLoggedIn();
                 console.log('Not authentification')
             }
         });

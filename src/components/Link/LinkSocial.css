@@ -66,3 +66,42 @@
 .deleteicon {
   width: 1.2rem;
 }
+
+.profilelink {
+  position: relative;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem 0.3rem 0 0;
+  transition: transform 0.2s linear;
+  cursor: pointer;
+  background-color: #001B2E;
+  border: 1px solid #ADB6C4;
+}
+.profilelink:hover {
+  filter: brightness(180%);
+}
+.profilelink:hover > .profilelink__link > .profilelink__a {
+  filter: invert(1);
+}
+.profilelink__a {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+}
+.profilelink__link {
+  padding: 0.4rem;
+  border-radius: 0.2rem 0.2rem 0 0;
+}
+.profilelink__link--Youtube {
+  background-color: #ff0000;
+  color: #001B2E;
+}
+.profilelink__link--Facebook {
+  background-color: #3b5998;
+  color: #001B2E;
+}
+.profilelink__link--Instagram {
+  background-color: #bc2a8d;
+  color: #001B2E;
+}

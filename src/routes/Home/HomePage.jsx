@@ -1,9 +1,11 @@
 import { async } from '@firebase/util';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { useEffect, useState } from 'react';
 import { auth, userExists } from '../../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../components/authProvider';
+import { useState } from 'react';
+import './HomePage.css';
+import icon from '../../assets/icon.svg';
 
 function HomePage() {
     const navigate = useNavigate();
@@ -17,28 +19,6 @@ function HomePage() {
     4: no login
     5: username exists
     */
-    /*
-        useEffect(() => {
-            setLoginState(1);
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    const isRegistered = await userExists(user.uid);
-                    if (isRegistered) {
-                        setLoginState(2);
-                        navigate('/dashboard');
-                    } else {
-                        navigate('/choose-username');
-                        setLoginState(3);
-                    }
-                    console.log(user.displayName)
-                } else {
-                    setLoginState(4);
-                    console.log('Not authentification')
-                }
-            });
-        }, [])
-    */
-
 
     const handleOnClick = () => {
         const googleProvider = new GoogleAuthProvider;
@@ -63,17 +43,22 @@ function HomePage() {
     }
 
 
-
-    /*if (stateLogin === 1) {
-        return <div>Loading...</div>
-    }*/
-    
     if (stateLogin === 4 || stateLogin === 5) {
         return (
-            <>
-                <h1>LOGIN</h1>
-                <button onClick={handleOnClick}>Login with Google</button>
-            </>
+            <section className='home'>
+                <img className='home__icon' src={icon} alt="icon link-tree"/>
+                <h1 className='home__title'>Link-Tree</h1>
+                <p className='home__p'>Share the collection on your social networks, in a single link.</p>
+                <span className='home__span'>Quick and easy:</span>
+                <ul className='home__ul'>
+                    <li className='home__li'>Login</li>
+                    <li className='home__li'>Choose your links</li>
+                    <li className='home__li'>Customize your card</li>
+                    <li className='home__li'>Share</li>
+                </ul>
+                <span className='home__get'>Get started now!</span>
+                <button className='home__button button' onClick={handleOnClick}>Login with Google</button>
+            </section>
         )
     }
     return (
@@ -84,7 +69,7 @@ function HomePage() {
         >
             <div>Loading...</div>
         </AuthProvider>
-        
+
     );
 }
 

@@ -8,6 +8,27 @@ $color_font: #FFEFD3;
     background-color: $color_primary;
     padding: 1rem;
 
+    &__title {
+        font-size: 3.2rem;
+        color: #FFEFD3;
+    }
+
+    &__name {
+        font-size: 2rem;
+        color: #ADB6C4;
+    }
+
+    &__container {
+        height: 2rem;
+        width: 100%;
+        background-color: #ADB6C400;
+    }
+
+    &__error {
+        color: #ff6161;
+        font-size: 0.8rem;
+    }
+
     &__form{
         display: flex;
         flex-direction: column;
@@ -15,5 +36,9 @@ $color_font: #FFEFD3;
         margin: 0 auto;
         gap: 1rem;
         width: 70%;
+    }
+    
+    &form__input {
+        padding: 0.5rem 0.5rem 0.5rem 0.3rem;
     }
 }

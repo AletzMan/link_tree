@@ -1,1 +1,1 @@
-.choose{background-color:#294C60;padding:1rem}.choose__form{display:flex;flex-direction:column;align-items:center;margin:0 auto;gap:1rem;width:70%}
+.choose{background-color:#294C60;padding:1rem}.choose__title{font-size:3.2rem;color:#FFEFD3}.choose__name{font-size:2rem;color:#ADB6C4}.choose__container{height:2rem;width:100%;background-color:#ADB6C400}.choose__error{color:#ff6161;font-size:.8rem}.choose__form{display:flex;flex-direction:column;align-items:center;margin:0 auto;gap:1rem;width:70%}.chooseform__input{padding:.5rem .5rem .5rem .3rem}

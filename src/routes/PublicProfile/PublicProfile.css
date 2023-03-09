@@ -1,0 +1,22 @@
+.publicprofile {
+  background-color: #001B2E;
+  padding: 0.1rem 1rem 1rem 1rem;
+}
+.publicprofile__title {
+  background-color: #ADB6C415;
+  color: #FFC49B;
+  margin-top: 1rem;
+  font-size: 2.5rem;
+}
+
+.profilelinks__photo {
+  margin: 0 2rem;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 3px solid #FFEFD3;
+}
+.profilelinks__photo--image {
+  max-width: 10rem;
+}
