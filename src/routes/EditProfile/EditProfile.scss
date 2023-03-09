@@ -1,0 +1,41 @@
+$color_background: #001B2E;
+$color_primary: #294C60;
+$color_secondary: #ADB6C4;
+$color_hover: #FFC49B;
+$color_font: #FFEFD3;
+
+.editprofile {
+    background-color: $color_primary;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    &__picture {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        border: 3px solid $color_font;
+        overflow: hidden;
+
+    }
+
+    &__photo {
+        width: 8rem;
+    
+    }
+
+    &__button {
+        position: absolute;
+        left: 20rem;
+        top: 23rem;
+        width: 1rem;
+        height: 1.8rem;
+        border-radius: 1rem;
+        background-image: url('../../assets/edit-icon.svg');
+        background-repeat: no-repeat;
+        background-size: 1.5rem;
+        background-position: 0.5rem top;
+    }
+}

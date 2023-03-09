@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { auth, userExists } from '../../firebase/firebase';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../../components/authProvider';
 import { useState } from 'react';
 import './HomePage.css';

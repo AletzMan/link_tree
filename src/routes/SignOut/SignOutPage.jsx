@@ -16,10 +16,10 @@ function SignOutPage() {
         setLoginState(2);
     }
     const handleNotLoggedIn = (user) => {
-        navigate('/login');
+        navigate('/');
     }
     const handleNotRegistered = () => {
-        navigate('/login');
+        navigate('/');
     }
 
     if (stateLogin === 0) {

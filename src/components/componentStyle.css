@@ -32,6 +32,7 @@
 }
 
 .dashboard {
+  position: relative;
   background-color: #294C60;
   padding: 0.5rem;
 }
@@ -41,7 +42,26 @@
   grid-auto-flow: row;
   gap: 0.4rem;
 }
+.dashboard__error {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  color: #fa7575;
+  font-size: 0.8rem;
+  animation: animationError 1s linear infinite;
+}
 
+@keyframes animationError {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .form__label {
   text-align: left;
   font-size: 0.8rem;

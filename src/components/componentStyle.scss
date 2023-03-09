@@ -43,6 +43,7 @@ $color_font: #FFEFD3;
 }
 
 .dashboard {
+    position: relative;
     background-color: $color_primary;
     padding: 0.5rem;
 
@@ -52,6 +53,21 @@ $color_font: #FFEFD3;
         grid-auto-flow: row;
         gap: 0.4rem;
     }
+
+    &__error {
+        position: absolute;
+        left: 1rem;
+        bottom: 1rem;
+        color: rgb(250, 117, 117);
+        font-size: 0.8rem;
+        animation: animationError 1s linear infinite;
+    }
+}
+
+@keyframes animationError {
+    0%{opacity: 1;}
+    80%{opacity: 1;}
+    100%{opacity: 0;}
 }
 
 .form {

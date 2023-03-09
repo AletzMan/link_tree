@@ -12,6 +12,7 @@ function DashboardPage() {
     const [stateLogin, setLoginState] = useState(0);
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
+    const [error, setError] = useState('');
     const [links, setLinks] = useState([]);
 
     const handleUserLoggedIn = async (user) => {
@@ -44,9 +45,12 @@ function DashboardPage() {
             setTitle('');
             setUrl('');
             setLinks([...links, newLink]);
+        } else {
+            setError('Fields cannot be left empty');
         }
     }
     const handleOnChange = (e) => {
+        setError('');
         const value = e.target.value;
         if (e.target.name === 'title') {
             setTitle(value);
@@ -92,6 +96,7 @@ function DashboardPage() {
                     <input className="form__input" type='text' name='url' onChange={handleOnChange} placeholder='www.youtube.com/profile' />
                     <input className="form__button button" type='submit' value='Create new Link' />
                 </form>
+                <span className="dashboard__error">{error}</span>
             </section>
             {links.map(({ id, docId, url, title }) => (
                 <LinkSocial key={id} docId={docId} url={url} title={title} onUpdate={handleUpdateLink} onDelete={handleDeleteLink}></LinkSocial>

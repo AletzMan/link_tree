@@ -15,7 +15,7 @@ function ChooseUsernamePage() {
         navigate('/dashboard');
     }
     const handleNotLoggedIn = () => {
-        navigate('/login');
+        navigate('/');
     }
     const handleNotRegistered = (user) => {
         setLoginState(3);

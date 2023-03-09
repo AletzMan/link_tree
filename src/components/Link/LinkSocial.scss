@@ -98,11 +98,12 @@ $color_font: #FFEFD3;
     border: 1px solid $color_secondary;
 
     &:hover {
-        filter: brightness(180%);
+        filter: brightness(140%);
         &>.profilelink__link>.profilelink__a {
             filter: invert(1);
         }
     }
+
 
     &__a {
         text-decoration: none;
@@ -116,17 +117,56 @@ $color_font: #FFEFD3;
         border-radius: 0.2rem 0.2rem 0 0;
 
         &--Youtube {
-            background-color: #ff0000;
+            background-image: url('../../assets/youtube-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.5rem;
+            background-size: 1.8rem;
+            background-color: #7e0c0c;
             color: #001B2E;
         }
 
         &--Facebook {
-            background-color: #3b5998;
+            background-image: url('../../assets/facebook-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.5rem;
+            background-size: 1.7rem;
+            background-color: #22355e;
             color: #001B2E;
         }
 
         &--Instagram {
-            background-color: #bc2a8d;
+            background-image: url('../../assets/instagram-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.4rem;
+            background-size: 2rem;
+            background-color: #881f67;
+            color: #001B2E;
+        }
+
+        &--Discord {
+            background-image: url('../../assets/discord-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.4rem;
+            background-size: 2rem;
+            background-color: #7661d4;
+            color: #001B2E;
+        }
+
+        &--Tiktok {
+            background-image: url('../../assets/tiktok-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.4rem;
+            background-size: 2rem;
+            background-color: #303030;
+            color: #001B2E;
+        }
+
+        &--Whatsapp {
+            background-image: url('../../assets/whatsapp-logo.svg');
+            background-repeat: no-repeat;
+            background-position: 0.4rem;
+            background-size: 2rem;
+            background-color: #48c46d;
             color: #001B2E;
         }
     }

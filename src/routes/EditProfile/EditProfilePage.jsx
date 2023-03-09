@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../components/authProvider";
 import { DashboardWrapper } from "../../components/dashboardWrapper";
 import { getProfilePhotoUrl, setUserProfilePhoto, updateUser } from "../../firebase/firebase";
+import './EditProfile.css';
 
 function EditProfilePage() {
     const navigate = useNavigate();
@@ -20,10 +21,10 @@ function EditProfilePage() {
     }
 
     const handleNotLoggedIn = (user) => {
-        navigate('/login');
+        navigate('/');
     }
     const handleNotRegistered = () => {
-        navigate('/login');
+        navigate('/');
     }
     const handleOpenFilePicker = () => {
         if (fileRef.current) {
@@ -60,10 +61,15 @@ function EditProfilePage() {
 
     return (
         <DashboardWrapper avtiveLinks={[false, true, false]}>
-            <h1>EDIT PROFILE</h1>
-            <img src={profilePhotoUrl} alt="image profile" width={100} />
-            <button onClick={handleOpenFilePicker}>Choose profile picture</button>
-            <input ref={fileRef} type='file' style={{ display: 'none' }} onChange={handleChangedFile} />
+            <section className="editprofile">
+                <h1 className="editprofile__title">EDIT PROFILE</h1>
+                <div className="editprofile__picture">
+                    <img className="editprofile__photo" src={profilePhotoUrl} alt="image profile" width={100} />
+                </div>
+                <button className="editprofile__button button" onClick={handleOpenFilePicker}></button>
+                <input className="editprofile__input" ref={fileRef} type='file' style={{ display: 'none' }} onChange={handleChangedFile} />
+                <span className="editprofile__name">{currentUser.displayName}</span>
+            </section>
         </DashboardWrapper>
     );
 }
